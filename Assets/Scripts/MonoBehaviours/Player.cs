@@ -6,8 +6,12 @@ public class Player : Character
 
     HealtBar healthBar;
 
+    public Inventory inventoryPrefab;
+    Inventory inventory;
+
     void Start()
     {
+        inventory = Instantiate(inventoryPrefab);
         hitPoints.value = startingHitPoints;
         healthBar = Instantiate(healthBarPrefab);
         healthBar.character = this;
@@ -29,6 +33,7 @@ public class Player : Character
                 {
 
                     case Item.ItemType.COIN:
+                        shouldDisappear = inventory.AddItem(hitObject);
                         shouldDisappear = true;
                         break;
 
